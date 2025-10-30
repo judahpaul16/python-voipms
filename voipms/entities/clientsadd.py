@@ -165,6 +165,11 @@ class ClientsAdd(BaseApi):
             "confirm_password": confirm_password,
         }
 
+        if "company" in kwargs:
+            if not isinstance(kwargs["company"], str):
+                raise ValueError("Company name for Client needs to be a str")
+            parameters["company"] = kwargs.pop("company")
+
         if "activate" in kwargs:
             if not isinstance(kwargs["activate"], bool):
                 raise ValueError("Activates Client needs to be a bool")
